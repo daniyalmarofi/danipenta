@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define TRUE 1
 
 void showBoard();
 void getUserInput(char );
@@ -17,8 +18,7 @@ int main()
     board[4][1]='b';
     board[5][5]='w';
 
-    while (true)
-    {
+    while (TRUE){
         showBoard();
         getUserInput('b');
         showBoard();
@@ -52,7 +52,6 @@ void getUserInput(char turn){
             getOK=1;printf("This place is already taken! Try another! :");
         }
     }
-// 
     printf("select the area to rotate:");
     int selectedArea=0;
     getOK=1;
@@ -84,32 +83,44 @@ void getUserInput(char turn){
         getOK=0;
     }
     // do the rotate
-
-
+    rotateArea(selectedArea,direction);
 
 }
 
 
 void rotateArea(int area, char dircetion){
-    int iFirst,iLast,jFirst,jLast;
+    int iFirst,jFirst;
     if(area==1){
-        iFirst=0;iLast=2;
-        jFirst=3;jLast=5;
+        iFirst=0;
+        jFirst=3;
     }else if(area==2){
-        iFirst=0;iLast=2;
-        jFirst=0;jLast=2;
+        iFirst=0;
+        jFirst=0;
     }else if(area==3){
-        iFirst=3;iLast=5;
-        jFirst=0;jLast=2;
+        iFirst=3;
+        jFirst=0;
     }else if(area==4){
-        iFirst=3;iLast=5;
-        jFirst=3;jLast=5;
+        iFirst=3;
+        jFirst=3;
     }
     char temp[3][3]={0};
 
-    for (int i = iFirst; i <= iLast; i++){
-        for (int j=jFirst;j<=jLast;j++){
-            // some code here
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            // +
+            if(dircetion=='+'){
+                temp[j][2-i]=board[iFirst+i][jFirst+j];
+            }else if(dircetion=='-'){
+                temp[2-j][i]=board[iFirst+i][jFirst+j];
+            }
+        }
+    }
+
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < 3; j++){
+            // if(temp[i][j]==0){printf("\t.");}
+            // else{printf("\t%c",temp[i][j]);}
+            board[iFirst+i][jFirst+j]=temp[i][j];
         }
     }
     
