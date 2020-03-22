@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define TRUE 1
+#define FALSE 0
 
 void showBoard();
 void getUserInput(char );
 void rotateArea(int , char);
+char checkWinner();
+
 char board[6][6]={0};
 
 
@@ -18,15 +21,44 @@ int main()
     board[4][1]='b';
     board[5][5]='w';
 
+    char gameResult;
+
     while (TRUE){
         showBoard();
+        gameResult=checkWinner();
+        if (gameResult=='F'){break;}
         getUserInput('b');
         showBoard();
+        gameResult=checkWinner();
+        if (gameResult=='F'){break;}
         getUserInput('w');
+    }
+
+    if(gameResult=='F'){
+        printf("NO ONE WON!");
     }
     
     getchar();
     return 0;
+}
+
+char checkWinner(){
+    // TODO check the winner for both players
+    // check if board is full
+    // TODO add this part to the end of the function
+    // because it's possible that a user won while the board is full!
+    int full=TRUE;
+    for (int i = 0; i < 6; i++){
+        for (int j = 0; j < 6; j++){
+            if(board[i][j]==0){full=FALSE;break;}
+        }
+        if(full==FALSE){break;}
+    }
+    if (full==TRUE){
+        return 'F'; //means the game finished and no one won!
+    }
+
+    return 'N'; //means no one won yet...
 }
 
 void getUserInput(char turn){
