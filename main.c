@@ -9,6 +9,7 @@ void rotateArea(int , char);
 char checkWinner();
 int checkVertical(int,int,char);
 int checkHorizontal(int,int,char);
+int checkFirstDiagonal(int,int,char);
 
 char board[6][6]={0};
 
@@ -67,6 +68,7 @@ int checkVertical(int row,int col, char turn){
         return FALSE;
     }
 }
+
 int checkHorizontal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -75,6 +77,21 @@ int checkHorizontal(int row,int col, char turn){
         }
     }
     if(board[row+1][col+3]==turn || board[row-1][col+3]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+int checkFirstDiagonal(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row+i][col+i]!=turn){
+            return FALSE;
+        }
+    }
+    // TODO need to fix
+    if(board[row+3][col+1]==turn || board[row+3][col-1]==turn){
         return TRUE;
     }else{
         return FALSE;
@@ -202,11 +219,11 @@ void rotateArea(int area, char dircetion){
 void showBoard(){
     system("cls");
     printf("  \t1\t2\t3\t \t4\t5\t6 \n");
-    printf("  ______________________________________________________________ \n");
+    printf("  ______________________________________________________________ \n |\t \t \t \t|\t \t \t \t|\n");
     for (int i = 0; i < 6; i++)
     {
-        if(i==3){printf(" |------------------------------|-------------------------------|\n");}
-        else if(i>0){printf(" |\t \t \t \t|\t \t \t \t|\n |\t \t \t \t|\t \t \t \t|\n");}
+        if(i==3){printf(" |\t \t \t \t|\t \t \t \t|\n |------------------------------|-------------------------------|\n |\t \t \t \t|\t \t \t \t|\n");}
+        else if(i>0){printf(" |\t \t \t \t|\t \t \t \t|\n |\t \t \t \t|\t \t \t \t|\n |\t \t \t \t|\t \t \t \t|\n");}
         printf("%d|",(i+1));
         for (int j = 0; j < 6; j++){
             if(j==3){printf("\t|");}
@@ -215,5 +232,5 @@ void showBoard(){
             if(j==5){printf("\t|\n");}
         }
     }
-    printf(" |______________________________|_______________________________|\n");
+    printf(" |\t \t \t \t|\t \t \t \t|\n |______________________________|_______________________________|\n");
 }
