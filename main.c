@@ -19,20 +19,6 @@ char board[6][6]={0};
 
 
 int main(){
-    
-    board[2][3]='w';
-    board[5][1]='b';
-    board[1][1]='b';
-    board[2][2]='b';
-    board[3][3]='b';
-    board[3][5]='b';
-    board[4][4]='b';
-    // board[4][0]='b';
-    board[2][4]='b';
-    board[4][0]='w';
-    board[4][1]='b';
-    board[5][5]='w';
-
     char gameResult;
 
     while (TRUE){
