@@ -12,6 +12,7 @@ int checkHorizontal(int,int,char);
 int checkFirstDiagonal(int,int,char);
 int checkSecondDiagonal(int,int,char);
 int checkThirdDiagonal(int,int,char);
+int checkForthDiagonal(int,int,char);
 
 char board[6][6]={0};
 
@@ -126,6 +127,20 @@ int checkThirdDiagonal(int row,int col, char turn){
         }
     }
     if(board[row-4][col+2]==turn || board[row-2][col+4]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+int checkForthDiagonal(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row-i][col-i]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row-2][col-4]==turn || board[row-4][col-2]==turn){
         return TRUE;
     }else{
         return FALSE;
