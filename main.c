@@ -17,23 +17,23 @@ int main()
 {
     
     board[2][3]='w';
-    board[1][5]='b';
-    board[0][1]='b';
+    board[5][1]='b';
+    board[1][0]='b';
     board[1][1]='b';
-    board[2][1]='b';
-    board[3][1]='b';
-    board[3][1]='b';
-    board[4][1]='b';
+    board[1][2]='b';
+    board[1][3]='b';
+    board[2][3]='b';
+    board[1][4]='b';
     // board[4][0]='b';
-    board[4][2]='b';
-    board[0][4]='w';
+    board[2][4]='b';
+    board[4][0]='w';
     board[4][1]='b';
     board[5][5]='w';
 
     char gameResult;
 
     showBoard();
-    printf("%d",checkVertical(1,1,'b'));
+    printf("%d",checkHorizontal(1,2,'b'));
 
     while (TRUE){
         // showBoard();
@@ -62,6 +62,19 @@ int checkVertical(int row,int col, char turn){
         }
     }
     if(board[row+3][col+1]==turn || board[row+3][col-1]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+int checkHorizontal(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row][col+i]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row+1][col+3]==turn || board[row-1][col+3]==turn){
         return TRUE;
     }else{
         return FALSE;
