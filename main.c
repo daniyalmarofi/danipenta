@@ -18,8 +18,7 @@ int checkForthDiagonal(int,int,char);
 char board[6][6]={0};
 
 
-int main()
-{
+int main(){
     
     board[2][3]='w';
     board[5][1]='b';
@@ -58,7 +57,6 @@ int main()
     return 0;
 }
 
-// TODO for row=1 2 3 and col=1 2 3 4 5 6
 int checkFirstVertical(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -73,7 +71,6 @@ int checkFirstVertical(int row,int col, char turn){
     }
 }
 
-// TODO for row=1 2 3 and col=1 2 3 4 5 6
 int checkSecondVertical(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -88,7 +85,6 @@ int checkSecondVertical(int row,int col, char turn){
     }
 }
 
-// TODO for col=1 2 3 and row=1 2 3 4 5 6
 int checkFirstHorizontal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -101,8 +97,7 @@ int checkFirstHorizontal(int row,int col, char turn){
     }else{
         return FALSE;
     }
-}// TODO for col=1 2 3 and row=1 2 3 4 5 6
-
+}
 
 int checkSecondHorizontal(int row,int col, char turn){
     int i;
@@ -118,7 +113,7 @@ int checkSecondHorizontal(int row,int col, char turn){
     }
 }
 
-// TODO for row= 1 2 3 and col= 1 2 3 except (3,3)
+
 int checkFirstDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -133,7 +128,6 @@ int checkFirstDiagonal(int row,int col, char turn){
     }
 }
 
-// TODO for row= 1 2 3 and col= 4 5 6 except (3,4)
 int checkSecondDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -148,7 +142,6 @@ int checkSecondDiagonal(int row,int col, char turn){
     }
 }
 
-// TODO for row= 4 5 6 and col= 1 2 3 except (4,3)
 int checkThirdDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -163,7 +156,6 @@ int checkThirdDiagonal(int row,int col, char turn){
     }
 }
 
-// TODO for row= 4 5 6 and col= 4 5 6 except (4,4)
 int checkForthDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -179,10 +171,41 @@ int checkForthDiagonal(int row,int col, char turn){
 }
 
 char checkWinner(){
-    // TODO check the winner for both players
+    for (int i = 0; i < 6; i++){
+        for (int j = 0; j < 6; j++){
+            if(j<3){
+                if(checkFirstHorizontal(i,j,'b')){return 'b';}
+                if(checkFirstHorizontal(i,j,'w')){return 'w';}
+            }else{
+                if(checkSecondHorizontal(i,j,'b')){return 'b';}
+                if(checkSecondHorizontal(i,j,'w')){return 'w';}
+            }
+            if(i<3){
+                if(checkFirstVertical(i,j,'b')){return 'b';}
+                if(checkFirstVertical(i,j,'w')){return 'w';}
+                if(j<3){
+                    if(checkFirstDiagonal(i,j,'b')){return 'b';}
+                    if(checkFirstDiagonal(i,j,'w')){return 'w';}
+                }else{
+                    if(checkSecondDiagonal(i,j,'b')){return 'b';}
+                    if(checkSecondDiagonal(i,j,'w')){return 'w';}
+                }
+            }else{
+                if(checkSecondVertical(i,j,'b')){return 'b';}
+                if(checkSecondVertical(i,j,'w')){return 'w';}
+                if(j<3){
+                    if(checkThirdDiagonal(i,j,'b')){return 'b';}
+                    if(checkThirdDiagonal(i,j,'w')){return 'w';}
+                }else{
+                    if(checkForthDiagonal(i,j,'b')){return 'b';}
+                    if(checkForthDiagonal(i,j,'w')){return 'w';}
+                }
+            }
+        }
+    }
+    
     // check if board is full
-    // TODO add this part to the end of the function
-    // because it's possible that a user won while the board is full!
+    // it's possible that a user won while the board is full!
     int full=TRUE;
     for (int i = 0; i < 6; i++){
         for (int j = 0; j < 6; j++){
@@ -255,7 +278,6 @@ void getUserInput(char turn){
 
 }
 
-
 void rotateArea(int area, char dircetion){
     int iFirst,jFirst;
     if(area==1){
@@ -294,7 +316,6 @@ void rotateArea(int area, char dircetion){
     
 
 }
-
 
 void showBoard(){
     system("cls");
