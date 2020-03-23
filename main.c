@@ -6,14 +6,8 @@
 void showBoard();
 void getUserInput(char );
 void rotateArea(int , char);
-char checkWinner();
-int checkFirstVertical(int,int,char);
-int checkSecondVertical(int,int,char);
-int checkFirstHorizontal(int,int,char);
-int checkFirstDiagonal(int,int,char);
-int checkSecondDiagonal(int,int,char);
-int checkThirdDiagonal(int,int,char);
-int checkForthDiagonal(int,int,char);
+char checkGame();
+int checkWinner(char,int,int,char);
 
 char board[6][6]={0};
 
@@ -23,11 +17,11 @@ int main(){
 
     while (TRUE){
         showBoard();
-        gameResult=checkWinner();
+        gameResult=checkGame();
         if (gameResult!='N'){break;}
         getUserInput('b');
         showBoard();
-        gameResult=checkWinner();
+        gameResult=checkGame();
         if (gameResult!='N'){break;}
         getUserInput('w');
     }
@@ -42,7 +36,7 @@ int main(){
     return 0;
 }
 
-int daniCheck(char action, int row,int col, char turn){
+int checkWinner(char action, int row,int col, char turn){
     // action::
     // v = top down check
     // V = bottom up check
@@ -126,7 +120,7 @@ int daniCheck(char action, int row,int col, char turn){
     }
 }
 
-char checkWinner(){
+char checkGame(){
 
     for (int i = 0; i < 6; i++){
         for (int j = 0; j < 6; j++){
@@ -174,9 +168,9 @@ char checkWinner(){
         }
         if(full==FALSE){break;}
     }
-    if (full==TRUE){
-        return 'F'; //means the game finished and no one won!
-    }
+    
+    if (full==TRUE) return 'F'; //means the game finished and no one won!
+    
 
     return 'N'; //means no one won yet...
 }
