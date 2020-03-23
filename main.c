@@ -7,8 +7,8 @@ void showBoard();
 void getUserInput(char );
 void rotateArea(int , char);
 char checkWinner();
-int checkVertical(int,int,char);
-int checkHorizontal(int,int,char);
+int checkFirstVertical(int,int,char);
+int checkFirstHorizontal(int,int,char);
 int checkFirstDiagonal(int,int,char);
 int checkSecondDiagonal(int,int,char);
 int checkThirdDiagonal(int,int,char);
@@ -59,7 +59,7 @@ int main()
 
 // TODO there is another condition for the vertical checking
 // TODO for row=1 2 3 and col=1 2 3 4 5 6
-int checkVertical(int row,int col, char turn){
+int checkFirstVertical(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
         if(board[row+i][col]!=turn){
@@ -75,7 +75,7 @@ int checkVertical(int row,int col, char turn){
 
 // TODO there is another condition for the horizantal checking
 // TODO for col=1 2 3 and row=1 2 3 4 5 6
-int checkHorizontal(int row,int col, char turn){
+int checkFirstHorizontal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
         if(board[row][col+i]!=turn){
@@ -119,6 +119,7 @@ int checkSecondDiagonal(int row,int col, char turn){
     }
 }
 
+// TODO for row= 4 5 6 and col= 1 2 3 except (4,3)
 int checkThirdDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -133,6 +134,7 @@ int checkThirdDiagonal(int row,int col, char turn){
     }
 }
 
+// TODO for row= 4 5 6 and col= 4 5 6 except (4,4)
 int checkForthDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
