@@ -58,7 +58,6 @@ int main()
     return 0;
 }
 
-// TODO there is another condition for the vertical checking
 // TODO for row=1 2 3 and col=1 2 3 4 5 6
 int checkFirstVertical(int row,int col, char turn){
     int i;
@@ -89,7 +88,6 @@ int checkSecondVertical(int row,int col, char turn){
     }
 }
 
-// TODO there is another condition for the horizantal checking
 // TODO for col=1 2 3 and row=1 2 3 4 5 6
 int checkFirstHorizontal(int row,int col, char turn){
     int i;
@@ -99,6 +97,21 @@ int checkFirstHorizontal(int row,int col, char turn){
         }
     }
     if(board[row+1][col+3]==turn || board[row-1][col+3]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}// TODO for col=1 2 3 and row=1 2 3 4 5 6
+
+
+int checkSecondHorizontal(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row][col-i]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row+1][col-3]==turn || board[row-1][col-3]==turn){
         return TRUE;
     }else{
         return FALSE;
