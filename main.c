@@ -8,6 +8,7 @@ void getUserInput(char );
 void rotateArea(int , char);
 char checkWinner();
 int checkFirstVertical(int,int,char);
+int checkSecondVertical(int,int,char);
 int checkFirstHorizontal(int,int,char);
 int checkFirstDiagonal(int,int,char);
 int checkSecondDiagonal(int,int,char);
@@ -67,6 +68,21 @@ int checkFirstVertical(int row,int col, char turn){
         }
     }
     if(board[row+3][col+1]==turn || board[row+3][col-1]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+// TODO for row=1 2 3 and col=1 2 3 4 5 6
+int checkSecondVertical(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row-i][col]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row-3][col+1]==turn || board[row-3][col-1]==turn){
         return TRUE;
     }else{
         return FALSE;
