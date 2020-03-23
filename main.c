@@ -18,18 +18,18 @@ int main(){
     while (TRUE){
         showBoard();
         gameResult=checkGame();
-        if (gameResult!='N'){break;}
+        if (gameResult!='N') break;
         getUserInput('b');
         showBoard();
         gameResult=checkGame();
-        if (gameResult!='N'){break;}
+        if (gameResult!='N') break;
         getUserInput('w');
     }
 
     if(gameResult=='F'){
         printf("NO ONE WON!");
     }else{
-        printf("THE PLAYER %c WON",gameResult);
+        printf("THE PLAYER %c WON!",gameResult);
     }
     
     getchar();
@@ -168,7 +168,7 @@ char checkGame(){
         }
         if(full==FALSE){break;}
     }
-    
+
     if (full==TRUE) return 'F'; //means the game finished and no one won!
     
 
