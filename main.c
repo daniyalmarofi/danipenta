@@ -7,6 +7,8 @@ void showBoard();
 void getUserInput(char );
 void rotateArea(int , char);
 char checkWinner();
+int checkVertical(int,int,char);
+int checkHorizontal(int,int,char);
 
 char board[6][6]={0};
 
@@ -14,24 +16,34 @@ char board[6][6]={0};
 int main()
 {
     
-    board[2][3]='b';
+    board[2][3]='w';
     board[1][5]='b';
+    board[0][1]='b';
+    board[1][1]='b';
+    board[2][1]='b';
+    board[3][1]='b';
+    board[3][1]='b';
+    board[4][1]='b';
+    // board[4][0]='b';
+    board[4][2]='b';
     board[0][4]='w';
-    board[3][0]='w';
     board[4][1]='b';
     board[5][5]='w';
 
     char gameResult;
 
+    showBoard();
+    printf("%d",checkVertical(1,1,'b'));
+
     while (TRUE){
-        showBoard();
-        gameResult=checkWinner();
-        if (gameResult=='F'){break;}
-        getUserInput('b');
-        showBoard();
-        gameResult=checkWinner();
-        if (gameResult=='F'){break;}
-        getUserInput('w');
+        // showBoard();
+        // gameResult=checkWinner();
+        // if (gameResult=='F'){break;}
+        // getUserInput('b');
+        // showBoard();
+        // gameResult=checkWinner();
+        // if (gameResult=='F'){break;}
+        // getUserInput('w');
     }
 
     if(gameResult=='F'){
@@ -40,6 +52,20 @@ int main()
     
     getchar();
     return 0;
+}
+
+int checkVertical(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row+i][col]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row+3][col+1]==turn || board[row+3][col-1]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
 }
 
 char checkWinner(){
