@@ -10,6 +10,8 @@ char checkWinner();
 int checkVertical(int,int,char);
 int checkHorizontal(int,int,char);
 int checkFirstDiagonal(int,int,char);
+int checkSecondDiagonal(int,int,char);
+int checkThirdDiagonal(int,int,char);
 
 char board[6][6]={0};
 
@@ -95,6 +97,35 @@ int checkFirstDiagonal(int row,int col, char turn){
         }
     }
     if(board[row+4][col+2]==turn || board[row+2][col+4]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+// TODO for row= 1 2 3 and col= 4 5 6 except (3,4)
+int checkSecondDiagonal(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row+i][col-i]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row+4][col-2]==turn || board[row+2][col-4]==turn){
+        return TRUE;
+    }else{
+        return FALSE;
+    }
+}
+
+int checkThirdDiagonal(int row,int col, char turn){
+    int i;
+    for (i = 0; i < 4; i++){
+        if(board[row-i][col+i]!=turn){
+            return FALSE;
+        }
+    }
+    if(board[row-4][col+2]==turn || board[row-2][col+4]==turn){
         return TRUE;
     }else{
         return FALSE;
