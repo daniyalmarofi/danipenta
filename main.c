@@ -35,22 +35,21 @@ int main(){
 
     char gameResult;
 
-    showBoard();
-    printf("%d",checkFirstDiagonal(2,2,'b'));
-
     while (TRUE){
-        // showBoard();
-        // gameResult=checkWinner();
-        // if (gameResult=='F'){break;}
-        // getUserInput('b');
-        // showBoard();
-        // gameResult=checkWinner();
-        // if (gameResult=='F'){break;}
-        // getUserInput('w');
+        showBoard();
+        gameResult=checkWinner();
+        if (gameResult!='N'){break;}
+        getUserInput('b');
+        showBoard();
+        gameResult=checkWinner();
+        if (gameResult!='N'){break;}
+        getUserInput('w');
     }
 
     if(gameResult=='F'){
         printf("NO ONE WON!");
+    }else{
+        printf("THE PLAYER %c WON",gameResult);
     }
     
     getchar();
