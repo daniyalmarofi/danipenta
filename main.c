@@ -19,12 +19,11 @@ int main()
     
     board[2][3]='w';
     board[5][1]='b';
-    board[1][0]='b';
     board[1][1]='b';
-    board[1][2]='b';
-    board[1][3]='b';
-    board[2][3]='b';
-    board[1][4]='b';
+    board[2][2]='b';
+    board[3][3]='b';
+    board[3][5]='b';
+    board[4][4]='b';
     // board[4][0]='b';
     board[2][4]='b';
     board[4][0]='w';
@@ -34,7 +33,7 @@ int main()
     char gameResult;
 
     showBoard();
-    printf("%d",checkHorizontal(1,2,'b'));
+    printf("%d",checkFirstDiagonal(2,2,'b'));
 
     while (TRUE){
         // showBoard();
@@ -55,6 +54,8 @@ int main()
     return 0;
 }
 
+// TODO there is another condition for the vertical checking
+// TODO for row=1 2 3 and col=1 2 3 4 5 6
 int checkVertical(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -69,6 +70,8 @@ int checkVertical(int row,int col, char turn){
     }
 }
 
+// TODO there is another condition for the horizantal checking
+// TODO for col=1 2 3 and row=1 2 3 4 5 6
 int checkHorizontal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -83,6 +86,7 @@ int checkHorizontal(int row,int col, char turn){
     }
 }
 
+// TODO for row= 1 2 3 and col= 1 2 3 except (3,3)
 int checkFirstDiagonal(int row,int col, char turn){
     int i;
     for (i = 0; i < 4; i++){
@@ -90,8 +94,7 @@ int checkFirstDiagonal(int row,int col, char turn){
             return FALSE;
         }
     }
-    // TODO need to fix
-    if(board[row+3][col+1]==turn || board[row+3][col-1]==turn){
+    if(board[row+4][col+2]==turn || board[row+2][col+4]==turn){
         return TRUE;
     }else{
         return FALSE;
