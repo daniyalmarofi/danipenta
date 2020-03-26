@@ -120,6 +120,8 @@ int checkWinner(char action, int row,int col, char turn){
     }
 }
 
+// TODO It's possible that both players won!
+// TODO it's possible that the board is full and a player or both players won!
 char checkGame(){
 
     for (int i = 0; i < 6; i++){
@@ -216,8 +218,7 @@ void getUserInput(char turn){
     printf("select the direction of rotate:");
     char direction;
     getOK=1;
-    while (getOK)
-    {
+    while (getOK){
         y=scanf("%c",&direction);
         // ignore if user input was "abc..." : clearBuffer
         // TODO fix bug in 20fdfdfdsfgdfgrjhfgds
