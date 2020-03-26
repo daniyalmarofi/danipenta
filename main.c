@@ -126,34 +126,34 @@ char checkGame(){
         for (int j = 0; j < 6; j++){
 
             if(j<3){
-                if(daniCheck('h',i,j,'b')) return 'b';
-                if(daniCheck('h',i,j,'w')) return 'w';
+                if(checkWinner('h',i,j,'b')) return 'b';
+                if(checkWinner('h',i,j,'w')) return 'w';
             }else{
-                if(daniCheck('H',i,j,'b')) return 'b';
-                if(daniCheck('H',i,j,'w')) return 'w';
+                if(checkWinner('H',i,j,'b')) return 'b';
+                if(checkWinner('H',i,j,'w')) return 'w';
             }
 
             if(i<3){
-                if(daniCheck('v',i,j,'b')) return 'b';
-                if(daniCheck('v',i,j,'w')) return 'w';
+                if(checkWinner('v',i,j,'b')) return 'b';
+                if(checkWinner('v',i,j,'w')) return 'w';
 
                 if(j<3){
-                    if(daniCheck('1',i,j,'b')) return 'b';
-                    if(daniCheck('1',i,j,'w')) return 'w';
+                    if(checkWinner('1',i,j,'b')) return 'b';
+                    if(checkWinner('1',i,j,'w')) return 'w';
                 }else{
-                    if(daniCheck('2',i,j,'b')) return 'b';
-                    if(daniCheck('2',i,j,'w')) return 'w';
+                    if(checkWinner('2',i,j,'b')) return 'b';
+                    if(checkWinner('2',i,j,'w')) return 'w';
                 }
             }else{
-                if(daniCheck('V',i,j,'b')) return 'b';
-                if(daniCheck('V',i,j,'w')) return 'w';
+                if(checkWinner('V',i,j,'b')) return 'b';
+                if(checkWinner('V',i,j,'w')) return 'w';
                 
                 if(j<3){
-                    if(daniCheck('3',i,j,'b')) return 'b';
-                    if(daniCheck('3',i,j,'w')) return 'w';
+                    if(checkWinner('3',i,j,'b')) return 'b';
+                    if(checkWinner('3',i,j,'w')) return 'w';
                 }else{
-                    if(daniCheck('4',i,j,'b')) return 'b';
-                    if(daniCheck('4',i,j,'w')) return 'w';
+                    if(checkWinner('4',i,j,'b')) return 'b';
+                    if(checkWinner('4',i,j,'w')) return 'w';
                 }
             }
         }
