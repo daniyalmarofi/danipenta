@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #define TRUE 1
 #define FALSE 0
+#define BOARD_SIZE 6
 
 void showBoard();
 void getUserInput(char );
@@ -9,7 +10,7 @@ void rotateArea(int , char);
 char checkGame();
 int checkWinner(char,int,int,char);
 
-char board[6][6]={0};
+char board[BOARD_SIZE][BOARD_SIZE]={0};
 
 
 int main(){
@@ -28,6 +29,8 @@ int main(){
 
     if(gameResult=='F'){
         printf("NO ONE WON!");
+    }else if(gameResult=='B'){
+        printf("BOTH PLAYERS WON!");
     }else{
         printf("THE PLAYER %c WON!",gameResult);
     }
@@ -120,42 +123,44 @@ int checkWinner(char action, int row,int col, char turn){
     }
 }
 
-// TODO It's possible that both players won!
-// TODO it's possible that the board is full and a player or both players won!
 char checkGame(){
 
-    for (int i = 0; i < 6; i++){
-        for (int j = 0; j < 6; j++){
+    int bWin=FALSE;
+    int wWin=FALSE;
+    int full=TRUE;
+
+    for (int i = 0; i < BOARD_SIZE; i++){
+        for (int j = 0; j < BOARD_SIZE; j++){
 
             if(j<3){
-                if(checkWinner('h',i,j,'b')) return 'b';
-                if(checkWinner('h',i,j,'w')) return 'w';
+                if(checkWinner('h',i,j,'b')) bWin=TRUE;
+                if(checkWinner('h',i,j,'w')) wWin=TRUE;
             }else{
-                if(checkWinner('H',i,j,'b')) return 'b';
-                if(checkWinner('H',i,j,'w')) return 'w';
+                if(checkWinner('H',i,j,'b')) bWin=TRUE;
+                if(checkWinner('H',i,j,'w')) wWin=TRUE;
             }
 
             if(i<3){
-                if(checkWinner('v',i,j,'b')) return 'b';
-                if(checkWinner('v',i,j,'w')) return 'w';
+                if(checkWinner('v',i,j,'b')) bWin=TRUE;
+                if(checkWinner('v',i,j,'w')) wWin=TRUE;
 
                 if(j<3){
-                    if(checkWinner('1',i,j,'b')) return 'b';
-                    if(checkWinner('1',i,j,'w')) return 'w';
+                    if(checkWinner('1',i,j,'b')) bWin=TRUE;
+                    if(checkWinner('1',i,j,'w')) wWin=TRUE;
                 }else{
-                    if(checkWinner('2',i,j,'b')) return 'b';
-                    if(checkWinner('2',i,j,'w')) return 'w';
+                    if(checkWinner('2',i,j,'b')) bWin=TRUE;
+                    if(checkWinner('2',i,j,'w')) wWin=TRUE;
                 }
             }else{
-                if(checkWinner('V',i,j,'b')) return 'b';
-                if(checkWinner('V',i,j,'w')) return 'w';
+                if(checkWinner('V',i,j,'b')) bWin=TRUE;
+                if(checkWinner('V',i,j,'w')) wWin=TRUE;
                 
                 if(j<3){
-                    if(checkWinner('3',i,j,'b')) return 'b';
-                    if(checkWinner('3',i,j,'w')) return 'w';
+                    if(checkWinner('3',i,j,'b')) bWin=TRUE;
+                    if(checkWinner('3',i,j,'w')) wWin=TRUE;
                 }else{
-                    if(checkWinner('4',i,j,'b')) return 'b';
-                    if(checkWinner('4',i,j,'w')) return 'w';
+                    if(checkWinner('4',i,j,'b')) bWin=TRUE;
+                    if(checkWinner('4',i,j,'w')) wWin=TRUE;
                 }
             }
         }
@@ -163,16 +168,23 @@ char checkGame(){
     
     // check if board is full
     // it's possible that a user won while the board is full!
-    int full=TRUE;
-    for (int i = 0; i < 6; i++){
-        for (int j = 0; j < 6; j++){
+    for (int i = 0; i < BOARD_SIZE; i++){
+        for (int j = 0; j < BOARD_SIZE; j++){
             if(board[i][j]==0){full=FALSE;break;}
         }
         if(full==FALSE){break;}
     }
-
-    if (full==TRUE) return 'F'; //means the game finished and no one won!
     
+    if(bWin && wWin){
+        return 'B';//means BOTH WON!
+    }else if(bWin){
+        return 'b';//means b WON!
+    }else if(wWin){
+        return 'w'; //means w WON!
+    }else if(full){
+        return 'F'; //means the game finished and no one won!
+    }
+
 
     return 'N'; //means no one won yet...
 }
@@ -193,7 +205,7 @@ void getUserInput(char turn){
         getOK=0;
         int column=input%10;
         int row=input/10;
-        if(column>6 || row>6 || column<1 || row<1){getOK=1;printf("Wrong input! Try again! :");continue;}
+        if(column>BOARD_SIZE || row>BOARD_SIZE || column<1 || row<1){getOK=1;printf("Wrong input! Try again! :");continue;}
         if(board[row-1][column-1]==0){
             board[row-1][column-1]=turn;
         }else{
@@ -277,12 +289,12 @@ void showBoard(){
     system("cls");
     printf("  \t1\t2\t3\t \t4\t5\t6 \n");
     printf("  ______________________________________________________________ \n |\t \t \t \t|\t \t \t \t|\n");
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < BOARD_SIZE; i++)
     {
         if(i==3){printf(" |\t \t \t \t|\t \t \t \t|\n |------------------------------|-------------------------------|\n |\t \t \t \t|\t \t \t \t|\n");}
         else if(i>0){printf(" |\t \t \t \t|\t \t \t \t|\n |\t \t \t \t|\t \t \t \t|\n |\t \t \t \t|\t \t \t \t|\n");}
         printf("%d|",(i+1));
-        for (int j = 0; j < 6; j++){
+        for (int j = 0; j < BOARD_SIZE; j++){
             if(j==3){printf("\t|");}
             if(board[i][j]==0){printf("\t.");}
             else{printf("\t%c",board[i][j]);}
