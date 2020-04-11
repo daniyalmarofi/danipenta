@@ -420,3 +420,4 @@ MigrationBackup/
 dibapi.h
 dibutil.h
 winbgi*
+enc_temp_folder/*

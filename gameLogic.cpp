@@ -1,4 +1,6 @@
-int checkWinner(char action, int row, int col, char turn) {
+#include "constants.h"
+
+int checkWinner(char board[][BOARD_SIZE], char action, int row, int col, char turn) {
 	// action::
 	// v = top down check
 	// V = bottom up check
@@ -82,7 +84,7 @@ int checkWinner(char action, int row, int col, char turn) {
 	}
 }
 
-char checkGame() {
+char checkGame(char board [][6]) {
 
 	int bWin = FALSE;
 	int wWin = FALSE;
@@ -92,38 +94,38 @@ char checkGame() {
 		for (int j = 0; j < BOARD_SIZE; j++) {
 
 			if (j < 3) {
-				if (checkWinner('h', i, j, 'b')) bWin = TRUE;
-				if (checkWinner('h', i, j, 'w')) wWin = TRUE;
+				if (checkWinner(board, 'h', i, j, 'b')) bWin = TRUE;
+				if (checkWinner(board, 'h', i, j, 'w')) wWin = TRUE;
 			}
 			else {
-				if (checkWinner('H', i, j, 'b')) bWin = TRUE;
-				if (checkWinner('H', i, j, 'w')) wWin = TRUE;
+				if (checkWinner(board, 'H', i, j, 'b')) bWin = TRUE;
+				if (checkWinner(board, 'H', i, j, 'w')) wWin = TRUE;
 			}
 
 			if (i < 3) {
-				if (checkWinner('v', i, j, 'b')) bWin = TRUE;
-				if (checkWinner('v', i, j, 'w')) wWin = TRUE;
+				if (checkWinner(board, 'v', i, j, 'b')) bWin = TRUE;
+				if (checkWinner(board, 'v', i, j, 'w')) wWin = TRUE;
 
 				if (j < 3) {
-					if (checkWinner('1', i, j, 'b')) bWin = TRUE;
-					if (checkWinner('1', i, j, 'w')) wWin = TRUE;
+					if (checkWinner(board, '1', i, j, 'b')) bWin = TRUE;
+					if (checkWinner(board, '1', i, j, 'w')) wWin = TRUE;
 				}
 				else {
-					if (checkWinner('2', i, j, 'b')) bWin = TRUE;
-					if (checkWinner('2', i, j, 'w')) wWin = TRUE;
+					if (checkWinner(board, '2', i, j, 'b')) bWin = TRUE;
+					if (checkWinner(board, '2', i, j, 'w')) wWin = TRUE;
 				}
 			}
 			else {
-				if (checkWinner('V', i, j, 'b')) bWin = TRUE;
-				if (checkWinner('V', i, j, 'w')) wWin = TRUE;
+				if (checkWinner(board, 'V', i, j, 'b')) bWin = TRUE;
+				if (checkWinner(board, 'V', i, j, 'w')) wWin = TRUE;
 
 				if (j < 3) {
-					if (checkWinner('3', i, j, 'b')) bWin = TRUE;
-					if (checkWinner('3', i, j, 'w')) wWin = TRUE;
+					if (checkWinner(board, '3', i, j, 'b')) bWin = TRUE;
+					if (checkWinner(board, '3', i, j, 'w')) wWin = TRUE;
 				}
 				else {
-					if (checkWinner('4', i, j, 'b')) bWin = TRUE;
-					if (checkWinner('4', i, j, 'w')) wWin = TRUE;
+					if (checkWinner(board, '4', i, j, 'b')) bWin = TRUE;
+					if (checkWinner(board, '4', i, j, 'w')) wWin = TRUE;
 				}
 			}
 		}

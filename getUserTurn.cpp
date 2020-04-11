@@ -93,7 +93,7 @@ void drawDirection(int x, int y, char direction, int color) {
 
 char getDirection(int area) {
 	printf("\nselect the direction of rotate:");
-	char direction;
+	char direction=0;
 	int x1Center, y1Center, x2Center, y2Center;
 	if (area == 1) {
 		x1Center = 375;
@@ -143,6 +143,10 @@ char getDirection(int area) {
 			direction = '-';
 		}
 		else if (ch == 'f') {
+			if (direction == 'n') {
+				printf("Wrong direction! Try again! :");
+				continue;
+			}
 			break;
 		}
 	}
