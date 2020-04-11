@@ -71,6 +71,9 @@ dkms.conf
 *.user
 *.userosscache
 *.sln.docstates
+*.sln
+*.vcxproj
+*.vcxproj.filters
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -411,7 +414,9 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio
 
-danipenta.sln
-danipenta.vcxproj
-danipenta.vcxproj.filters
-danipenta.vcxproj.user
+# My Project
+*.cxx
+*.html
+dibapi.h
+dibutil.h
+winbgi*
