@@ -2,6 +2,7 @@
 #include "graphics.h"
 #include "drawBoard.h"
 #include "getUserTurn.h"
+#include "rotateArea.h"
 
 int main() {
 	char board[6][6] = { {'w','w',0,'b','w','b'} ,{0,0,0,'b','w','b'}, {'b','b','w','b','w','b'} };
@@ -15,7 +16,9 @@ int main() {
 	
 	drawBoard(board);
 
-	getArea();
+	getDirection(4);
+	//int area = getArea();
+	//rotateArea(board,area,getDirection(area));
 
 	while (!kbhit())
 	{

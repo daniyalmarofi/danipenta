@@ -1,0 +1,1 @@
+void rotateArea(char board[][6], int area, char dircetion);

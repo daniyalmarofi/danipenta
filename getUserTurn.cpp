@@ -42,42 +42,93 @@ int checkInput(int i, int j) {
 	return 1;
 }
 
-void highlightArea(int area) {
+void highlightArea(int area, int color) {
 	int top, left, bottom, right;
-	setcolor(BLUE);
-	setlinestyle(SOLID_LINE, 0xFFFF, 7);
-	if (area = 1) {
+	if (area == 1) {
 		left = 265;
 		right = 480;
 		top = 50;
 		bottom = 265;
 	}
-	else if(area = 2) {
+	else if(area == 2) {
 		left = 50;
 		right = 265;
 		top = 50;
 		bottom = 265;
 	}
-	else if(area = 3) {
+	else if(area == 3) {
 		left = 50;
 		right = 265;
 		top = 265;
 		bottom = 480;
 	}
-	else if(area = 4) {
+	else if(area == 4) {
 		left = 265;
 		right = 480;
 		top = 265;
 		bottom = 480;
 	}
 
+	setcolor(color);
+	setlinestyle(SOLID_LINE, 0xFFFF, (color == BLUE ? 7 : 4));
 	rectangle(left, top, right, bottom);
 	return;
+}
+
+void drawDirection(int x, int y, char direction, int color) {
+	setcolor(color);
+	setlinestyle(SOLID_LINE, 0xFFFF, 9);
+	if (direction == '-') {
+		arc(x, y, 270, 90, 60);
+		line(x, y - 60 - 15, x - 16, y - 60);
+		line(x, y - 60 + 15, x - 16, y - 60);
+	}
+	else if (direction == '+') {
+		arc(x, y, 90, 270, 60);
+		line(x, y - 60 - 15, x + 16, y - 60);
+		line(x, y - 60 + 15, x + 16, y - 60);
+	}
+
+}
+
+int getDirection(int area) {
+	char direction;
+	int x1Center, y1Center, x2Center, y2Center;
+	if (area == 1) {
+		x1Center = 375;
+		x2Center = 375;
+		y1Center = 130;
+		y2Center = 190;
+	}
+	else if (area == 2) {
+		x1Center = 160;
+		x2Center = 160;
+		y1Center = 190;
+		y2Center = 130;
+	}
+	else if(area == 3) {
+		x1Center = 160;
+		x2Center = 160;
+		y1Center = 345;
+		y2Center = 405;
+	}
+	else if(area == 4) {
+		x1Center = 375;
+		x2Center = 375;
+		y1Center = 345;
+		y2Center = 405;
+	}
+
+	drawDirection(x1Center, y1Center, '+', CYAN);
+	drawDirection(x2Center, y2Center, '-', LIGHTMAGENTA);
+
+	return 0;
 }
 
 int getArea() {
 	printf("getarea");
 	int area = 1;
+	highlightArea(area, BLUE);
 
 	while (1) {
 
@@ -89,19 +140,19 @@ int getArea() {
 		printf("/:");
 		char ch = getch();
 		printf("%c", ch);
-		if (ch == 'd') {
+		if (ch == 'n') {
+			highlightArea(area, YELLOW);
 			area++;
 			if (area == 5) {
 				area = 1;
 			}
-			highlightArea(area);
+			highlightArea(area,BLUE);
 		}
 		else if (ch == 'f') {
 			break;
 		}
 	}
-
-	return 0;
+	return area;
 }
 
 void getUserTurn(char board[][6],char turn) {
