@@ -91,7 +91,8 @@ void drawDirection(int x, int y, char direction, int color) {
 
 }
 
-int getDirection(int area) {
+char getDirection(int area) {
+	printf("\nselect the direction of rotate:");
 	char direction;
 	int x1Center, y1Center, x2Center, y2Center;
 	if (area == 1) {
@@ -122,7 +123,31 @@ int getDirection(int area) {
 	drawDirection(x1Center, y1Center, '+', CYAN);
 	drawDirection(x2Center, y2Center, '-', LIGHTMAGENTA);
 
-	return 0;
+	while (1) {
+
+		while (!kbhit) {
+			delay(100);
+		}
+
+		//get user input for direction of rotation
+		printf(",:");
+		char ch = getch();
+		printf("%c", ch);
+		if (ch == '+') {
+			drawDirection(x1Center, y1Center, '+', GREEN);
+			drawDirection(x2Center, y2Center, '-', LIGHTMAGENTA);
+			direction = '+';
+		} else if (ch == '-') {
+			drawDirection(x2Center, y2Center, '-', GREEN);
+			drawDirection(x1Center, y1Center, '+', CYAN);
+			direction = '-';
+		}
+		else if (ch == 'f') {
+			break;
+		}
+	}
+
+	return direction;
 }
 
 int getArea() {
