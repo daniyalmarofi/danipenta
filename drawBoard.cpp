@@ -24,7 +24,9 @@ void drawBoard(char board[][6]) {
 	floodfill(55, 55, YELLOW);
 	setcolor(YELLOW);
 	setfillstyle(SOLID_FILL, RED);
+	//draw vertical line
 	line(50, 265, 480, 265);
+	//draw horizontal line
 	line(265, 50, 265, 480);
 
 	//show row number
@@ -55,7 +57,7 @@ void drawBoard(char board[][6]) {
 			setfillstyle(SOLID_FILL, fillColor);
 			floodfill(getCoordinate(i, j, 'i'), getCoordinate(i, j, 'j'), YELLOW);
 
-			delay(100);
+			//delay(100);
 		}
 	}
 

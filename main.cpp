@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "graphics.h"
-
 #include "drawBoard.h"
 #include "getUserTurn.h"
 
@@ -11,9 +10,12 @@ int main() {
 	drawBoard(board);
 
 	int wid = getcurrentwindow();
-	//showPointer(1, 1);
-
+	
 	getUserTurn(board,'b');
+	
+	drawBoard(board);
+
+	getArea();
 
 	while (!kbhit())
 	{
