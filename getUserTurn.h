@@ -6,6 +6,4 @@ void movePointer(int i, int j, char operation);
 void getUserTurn(char board[][BOARD_SIZE], char turn);
 void clearPointer(char board[][BOARD_SIZE], int i, int j);
 int checkInput(int i, int j);
-int getArea();
-void highlightArea(int area, int color);
 char getDirection(int area);

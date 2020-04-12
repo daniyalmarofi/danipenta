@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "drawBoard.h"
 #include "getUserTurn.h"
+#include "getArea.h"
 #include "rotateArea.h"
 #include "gameLogic.h"
 
@@ -66,19 +67,25 @@ int main() {
         // clear previous errors
 		outtextxy(520, 280, "                              ");
 		outtextxy(520, 300, "                              ");
-		outtextxy(520, 320, "                              ");
 	}
 	else {
 		outtextxy(520, 220, (gameResult=='w' ? "THE WHITE      " : "THE BLACK      "));
 		outtextxy(520, 270, "PLAYER WON!     ");
-        // clear previous errors
-		outtextxy(520, 320, "                    ");
 	}
 
-	while (!kbhit())
-	{
-		delay(400);
+	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
+	outtextxy(520, 320, "press q to exit               ");
+
+	while(TRUE) {
+		while (!kbhit())
+		{
+			delay(400);
+		}
+		if (getch()=='q') {
+			break;
+		}
 	}
+	
 
 	return 0;
 }
