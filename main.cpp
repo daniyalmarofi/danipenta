@@ -26,6 +26,7 @@ int main() {
 	outtextxy(520, 160, "3. choose the direction of");
 	outtextxy(565, 180, "rotation");
 
+
 	char gameResult;
 	int area=0;
 
@@ -49,12 +50,28 @@ int main() {
 
 	if (gameResult == 'F') {
 		printf("NO ONE WON!");
+		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
+		setcolor(LIGHTCYAN);
+		outtextxy(520, 220, " NO ONE WON!  ");
+		outtextxy(520, 280, "                              ");
+		outtextxy(520, 300, "                              ");
+		outtextxy(520, 320, "                              ");
 	}
 	else if (gameResult == 'B') {
 		printf("BOTH PLAYERS WON!");
+		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
+		setcolor(LIGHTCYAN);
+		outtextxy(520, 220, "BOTH PLAYERS WON!");
+		outtextxy(520, 280, "                              ");
+		outtextxy(520, 300, "                              ");
+		outtextxy(520, 320, "                              ");
 	}
 	else {
-		printf("THE PLAYER %c WON!", gameResult);
+		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
+		setcolor(LIGHTCYAN);
+		outtextxy(520, 220, (gameResult=='w' ? "THE WHITE      " : "THE BLACK      "));
+		outtextxy(520, 270, "PLAYER WON!     ");
+		outtextxy(520, 320, "                              ");
 	}
 
 
