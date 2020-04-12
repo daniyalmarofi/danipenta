@@ -98,6 +98,10 @@ char getDirection(int area) {
 	setcolor(LIGHTBLUE);
 	outtextxy(520, 220, "choose the direction to rotate");
 	outtextxy(520, 250, "use -/+ to select direction   ");
+	outtextxy(520, 300, "                              ");
+	outtextxy(520, 320, "                              ");
+
+
 	char direction=0;
 	int x1Center, y1Center, x2Center, y2Center;
 	if (area == 1) {
@@ -176,6 +180,8 @@ int getArea() {
 	setcolor(LIGHTBLUE);
 	outtextxy(520, 220, "choose a plate to rotate      ");
 	outtextxy(520, 250, "use n to go to next plate     ");
+	outtextxy(520, 300, "                              ");
+	outtextxy(520, 320, "                              ");
 
 	int area = 1;
 	highlightArea(area, BLUE);
@@ -219,6 +225,8 @@ void getUserTurn(char board[][6],char turn) {
 	outtextxy(520, 220, text);
 	outtextxy(520, 250, "use w, a, s, d to move pointer");
 	outtextxy(520, 275, "press f to confirm");
+	outtextxy(520, 300, "                              ");
+	outtextxy(520, 320, "                              ");
 
 	
 
