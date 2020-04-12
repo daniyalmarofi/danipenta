@@ -12,8 +12,19 @@ int main() {
 
 	//char board[6][6] = { {'w','w',0,'b','w','b'} ,{0,0,0,'b','w','b'}, {'b','b','w','b','w','b'} };
 
-	initwindow(530, 530, "Pentagol!");
+	initwindow(1000, 530, "Pentagol!");
 	int wid = getcurrentwindow();
+
+
+	settextstyle(EUROPEAN_FONT, HORIZ_DIR, 5);
+	outtextxy(520, 50, "PENTAGOL!");
+	
+	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
+	outtextxy(520, 100, "Steps:");
+	outtextxy(520, 120, "1. choose a point");
+	outtextxy(520, 140, "2. choose a plate to rotate");
+	outtextxy(520, 160, "3. choose the direction of");
+	outtextxy(565, 180, "rotation");
 
 	char gameResult;
 	int area=0;
