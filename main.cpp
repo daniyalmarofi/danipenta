@@ -1,10 +1,11 @@
 #include <stdio.h>
-#include "graphics.h"
 
+#include "graphics.h"
 #include "constants.h"
 #include "drawBoard.h"
 #include "getUserTurn.h"
 #include "getArea.h"
+#include "getDirection.h"
 #include "rotateArea.h"
 #include "gameLogic.h"
 
