@@ -10,7 +10,7 @@ void getUserInput(char board[][BOARD_SIZE], char turn) {
 	int input = 0, y = 0;
 	int getOK = 1;
 	while (getOK) {
-		y = scanf_s("%d", &input);
+		y = scanf("%d", &input);
 		// ignore if user input was "abc..." : clearBuffer
 		while (getchar() != '\n');
 		if (y != 1 || input < 11) {
@@ -34,7 +34,7 @@ void getUserInput(char board[][BOARD_SIZE], char turn) {
 	int selectedArea = 0;
 	getOK = 1;
 	while (getOK) {
-		y = scanf_s("%d", &selectedArea);
+		y = scanf("%d", &selectedArea);
 		// ignore if user input was "abc..." : clearBuffer
 		while (getchar() != '\n');
 		if (y != 1 || selectedArea < 1 || selectedArea>4) {
@@ -49,7 +49,7 @@ void getUserInput(char board[][BOARD_SIZE], char turn) {
 	char direction;
 	getOK = 1;
 	while (getOK) {
-		y = scanf_s("%c", &direction);
+		y = scanf("%c", &direction);
 		// ignore if user input was "abc..." : clearBuffer
 		while (getchar() != '\n');
 		if (y != 1 || (direction != '-' && direction != '+')) {

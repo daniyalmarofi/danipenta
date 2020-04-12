@@ -1,0 +1,1 @@
+char checkGame(char board[][6]);
