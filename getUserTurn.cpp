@@ -2,6 +2,7 @@
 #include "drawBoard.h"
 #include "constants.h"
 
+// ** This functions shows the pointer in point (i,j) of the board
 void showPointer(int i, int j) {
 	setcolor(BLUE);
 	setlinestyle(SOLID_LINE, 0xFFFF, 7);
@@ -9,7 +10,8 @@ void showPointer(int i, int j) {
 	return;
 }
 
-void clearPointer(char board[][6], int i, int j) {
+// ** This function clears the pointer from the point (i,j) of the board
+void clearPointer(char board[][BOARD_SIZE], int i, int j) {
 	char fillColor;
 	if (board[j][i] == 'w')
 		fillColor = WHITE;
@@ -21,28 +23,27 @@ void clearPointer(char board[][6], int i, int j) {
 	floodfill(getCoordinate(i, j, 'i'), getCoordinate(i, j, 'j'), YELLOW);
 }
 
+// ** this function shows the next pointer in the board acoording to previous point
 void movePointer(int i,int j, char operation) {
-	if (operation == 'w') {
+	if (operation == 'w')
 		showPointer(i, j - 1);
-	}
-	else if (operation == 's') {
+	else if (operation == 's')
 		showPointer(i, j + 1);
-	}
-	else if (operation == 'd') {
+	else if (operation == 'd')
 		showPointer(i + 1, j);
-	}
-	else if (operation == 'a') {
+	else if (operation == 'a')
 		showPointer(i - 1, j);
-	}
 	return;
 }
 
+// ** This function check if user selected the correct point or not returns 1 if OK
 int checkInput(int i, int j) {
-	if (i < 0 || i >= 6 || j<0 || j >= 6)
-		return 0;
-	return 1;
+	if (i < 0 || i >= BOARD_SIZE || j<0 || j >= BOARD_SIZE)
+		return FALSE;
+	return TRUE;
 }
 
+// ** this function puts a blue rectangle to select the area to rotate
 void highlightArea(int area, int color) {
 	int top, left, bottom, right;
 	if (area == 1) {
@@ -76,6 +77,7 @@ void highlightArea(int area, int color) {
 	return;
 }
 
+// ** this function shows the direction with chosen direction
 void drawDirection(int x, int y, char direction, int color) {
 	setcolor(color);
 	setlinestyle(SOLID_LINE, 0xFFFF, 9);
@@ -92,8 +94,9 @@ void drawDirection(int x, int y, char direction, int color) {
 
 }
 
+// ** this function gets the directions from user for the selected area
 char getDirection(int area) {
-	printf("\nselect the direction of rotate:");
+	// printf("\nselect the direction of rotate:");
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 	setcolor(LIGHTBLUE);
 	outtextxy(520, 220, "choose the direction to rotate");
@@ -101,7 +104,7 @@ char getDirection(int area) {
 	outtextxy(520, 300, "                              ");
 	outtextxy(520, 320, "                              ");
 
-
+    // defining the coordiantes of arrows in each area
 	char direction=0;
 	int x1Center, y1Center, x2Center, y2Center;
 	if (area == 1) {
@@ -132,16 +135,16 @@ char getDirection(int area) {
 	drawDirection(x1Center, y1Center, '+', CYAN);
 	drawDirection(x2Center, y2Center, '-', LIGHTMAGENTA);
 
+    // getting user input
 	while (TRUE) {
 
+        // waiting for keyboad
 		while (!kbhit) {
 			delay(100);
 		}
 
 		//get user input for direction of rotation
-		printf(",:");
 		char ch = getch();
-		printf("%c", ch);
 		if (ch == '+') {
 			drawDirection(x1Center, y1Center, '+', GREEN);
 			drawDirection(x2Center, y2Center, '-', LIGHTMAGENTA);
@@ -153,7 +156,7 @@ char getDirection(int area) {
 		}
 		else if (ch == 'f') {
 			if (direction == 0) {
-				printf("\nNo selected direction! Try again! :");
+				// printf("\nNo selected direction! Try again! :");
 				settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 				setcolor(LIGHTRED);
 				outtextxy(520, 300, "No selected direction!        ");
@@ -163,7 +166,7 @@ char getDirection(int area) {
 			break;
 		}
 		else {
-			printf("\nWrong input! Try again! :");
+			// printf("\nWrong input! Try again! :");
 			settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 			setcolor(LIGHTRED);
 			outtextxy(520, 300, "Wrong input! Try again!       ");
@@ -174,8 +177,9 @@ char getDirection(int area) {
 	return direction;
 }
 
+// ** this function gets the area to rotate from user
 int getArea() {
-	printf("\ngetarea");
+	// printf("\ngetarea");
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 	setcolor(LIGHTBLUE);
 	outtextxy(520, 220, "choose a plate to rotate      ");
@@ -186,16 +190,16 @@ int getArea() {
 	int area = 1;
 	highlightArea(area, BLUE);
 
+    // get user input
 	while (TRUE) {
 
+        // waiting for input
 		while (!kbhit) {
 			delay(100);
 		}
 
 		//get user input for selecting area
-		printf("/:");
 		char ch = getch();
-		printf("%c", ch);
 		if (ch == 'n') {
 			highlightArea(area, YELLOW);
 			area++;
@@ -208,7 +212,7 @@ int getArea() {
 			break;
 		}
 		else {
-			printf("\nWrong input! Try again! :");
+			// printf("\nWrong input! Try again! :");
 			settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 			setcolor(LIGHTRED);
 			outtextxy(520, 300, "Wrong input! Try again!       ");
@@ -217,41 +221,35 @@ int getArea() {
 	return area;
 }
 
-void getUserTurn(char board[][6],char turn) {
+// ** this function shows the pointer and asks users to select a point
+void getUserTurn(char board[][6], char turn) {
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 	setcolor(LIGHTBLUE);
-	char text[100];
-	sprintf(text, "%c player's turn:              ", turn);
-	outtextxy(520, 220, text);
+	outtextxy(520, 220, (turn == 'b' ? "BLACK player's turn:              " : "WHITE player's turn:              "));
 	outtextxy(520, 250, "use w, a, s, d to move pointer");
 	outtextxy(520, 275, "press f to confirm");
 	outtextxy(520, 300, "                              ");
 	outtextxy(520, 320, "                              ");
+	// printf("\n%c player's turn:", turn);
 
-	
-
-	
-
-
-	printf("\n%c player's turn:", turn);
+    // initiate the first location of the pointer
 	int i = 0, j = 0;
 	showPointer(i, j);
 
+    // geting user input
 	while (TRUE) {
 	
-		//wait for input...
+		//wait for input
 		while (!kbhit)
 		{
 			delay(100);
 		}
 
-		//get input
-		printf(":");
+		//get the location of the point in the board
 		char ch = getch();
-		printf("%c", ch);
 		if (ch == 'w') {
 			if (checkInput(i, j - 1) == 0) {
-				printf("\nWrong input! Try again! :");
+				// printf("\nWrong input! Try again! :");
 				settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 				setcolor(LIGHTRED);
 				outtextxy(520, 300, "Wrong input! Try again!       ");
@@ -263,7 +261,7 @@ void getUserTurn(char board[][6],char turn) {
 		}
 		else if (ch == 's') {
 			if (checkInput(i, j + 1) == 0) {
-				printf("\nWrong input! Try again! :");
+				// printf("\nWrong input! Try again! :");
 				settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 				setcolor(LIGHTRED);
 				outtextxy(520, 300, "Wrong input! Try again!       ");
@@ -275,7 +273,7 @@ void getUserTurn(char board[][6],char turn) {
 		}
 		else if (ch == 'a') {
 			if (checkInput(i-1, j) == 0) {
-				printf("\nWrong input! Try again! :");
+				// printf("\nWrong input! Try again! :");
 				settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 				setcolor(LIGHTRED);
 				outtextxy(520, 300, "Wrong input! Try again!       ");
@@ -287,7 +285,7 @@ void getUserTurn(char board[][6],char turn) {
 		}
 		else if (ch == 'd') {
 			if (checkInput(i+1, j) == 0) {
-				printf("\nWrong input! Try again! :");
+				// printf("\nWrong input! Try again! :");
 				settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 				setcolor(LIGHTRED);
 				outtextxy(520, 300, "Wrong input! Try again!       ");
@@ -303,7 +301,7 @@ void getUserTurn(char board[][6],char turn) {
 				break;
 			}
 			else {
-				printf("\nThis place is already taken! Try another! :");
+				// printf("\nThis place is already taken! Try another! :");
 				settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 				setcolor(LIGHTRED);
 				outtextxy(520, 300, "This place is already taken!  ");
@@ -311,7 +309,7 @@ void getUserTurn(char board[][6],char turn) {
 			}
 		}
 		else {
-			printf("\nWrong input! Try again! :");
+			// printf("\nWrong input! Try again! :");
 			settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 			setcolor(LIGHTRED);
 			outtextxy(520, 300, "Wrong input! Try again!       ");
