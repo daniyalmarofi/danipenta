@@ -215,7 +215,7 @@ void getUserTurn(char board[][6],char turn) {
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 	setcolor(LIGHTBLUE);
 	char text[100];
-	sprintf(text, "%c player's turn:", turn);
+	sprintf(text, "%c player's turn:              ", turn);
 	outtextxy(520, 220, text);
 	outtextxy(520, 250, "use w, a, s, d to move pointer");
 	outtextxy(520, 275, "press f to confirm");
