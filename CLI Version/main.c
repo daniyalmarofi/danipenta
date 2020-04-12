@@ -6,10 +6,6 @@
 #include "getInput.h"
 #include "gameLogic.h"
 
-#include "showBoard.c"
-#include "getInput.c"
-#include "gameLogic.cpp"
-
 int main() {
 
     char board[BOARD_SIZE][BOARD_SIZE] = { 0 };
