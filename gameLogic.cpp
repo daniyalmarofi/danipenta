@@ -6,10 +6,10 @@ int checkWinner(char board[][BOARD_SIZE], char action, int row, int col, char tu
 	// V = bottom up check
 	// h = left right check
 	// H = right left check
-	// 1 = first diaginal check
-	// 2 = second diagonal check
-	// 3 = third diagonal check
-	// 4 = forth diagonal check
+	// 1 = first diaginal check  \
+	// 2 = second diagonal check /
+	// 3 = third diagonal check /
+	// 4 = forth diagonal check \ 
 	int i;
 	for (i = 0; i < 4; i++) {
 		switch (action) {

@@ -48,6 +48,7 @@ int main() {
 		drawBoard(board);
 	}
 
+	drawBoard(board);
 	if (gameResult == 'F') {
 		printf("NO ONE WON!");
 		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
@@ -71,7 +72,7 @@ int main() {
 		setcolor(LIGHTCYAN);
 		outtextxy(520, 220, (gameResult=='w' ? "THE WHITE      " : "THE BLACK      "));
 		outtextxy(520, 270, "PLAYER WON!     ");
-		outtextxy(520, 320, "                              ");
+		outtextxy(520, 320, "                    ");
 	}
 
 
