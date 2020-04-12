@@ -1,13 +1,17 @@
+#ifndef BOARD_SIZE
+#include "constants.h"
+#endif
 
+// ** this function get the input from user in console
+void getUserInput(char board[][BOARD_SIZE], char turn) {
 
-void getUserInput(char turn) {
+    // trying to get location of the boint
 	printf("\n%c player's turn:", turn);
 	int input = 0, y = 0;
 	int getOK = 1;
 	while (getOK) {
 		y = scanf_s("%d", &input);
 		// ignore if user input was "abc..." : clearBuffer
-		// TODO fix bug in 20fdfdfdsfgdfgrjhfgds
 		while (getchar() != '\n');
 		if (y != 1 || input < 11) {
 			printf("Wrong input! Try again! :");
@@ -24,13 +28,14 @@ void getUserInput(char turn) {
 			getOK = 1; printf("This place is already taken! Try another! :");
 		}
 	}
+
+    // trying to get the area to rotate
 	printf("select the area to rotate:");
 	int selectedArea = 0;
 	getOK = 1;
 	while (getOK) {
 		y = scanf_s("%d", &selectedArea);
 		// ignore if user input was "abc..." : clearBuffer
-		// TODO fix bug in 20fdfdfdsfgdfgrjhfgds
 		while (getchar() != '\n');
 		if (y != 1 || selectedArea < 1 || selectedArea>4) {
 			printf("Wrong input! Try again! :");
@@ -39,13 +44,13 @@ void getUserInput(char turn) {
 		getOK = 0;
 	}
 
+    // trying to get the direcation of rotation
 	printf("select the direction of rotate:");
 	char direction;
 	getOK = 1;
 	while (getOK) {
 		y = scanf_s("%c", &direction);
 		// ignore if user input was "abc..." : clearBuffer
-		// TODO fix bug in 20fdfdfdsfgdfgrjhfgds
 		while (getchar() != '\n');
 		if (y != 1 || (direction != '-' && direction != '+')) {
 			printf("Wrong input! Try again! :");
@@ -54,11 +59,12 @@ void getUserInput(char turn) {
 		getOK = 0;
 	}
 	// do the rotate
-	rotateArea(selectedArea, direction);
+	rotateArea(board,selectedArea, direction);
 
 }
 
-void rotateArea(int area, char dircetion) {
+// ** this function rotates the user selected area
+void rotateArea(char board[][BOARD_SIZE], int area, char dircetion) {
 	int iFirst, jFirst;
 	if (area == 1) {
 		iFirst = 0;
@@ -90,13 +96,9 @@ void rotateArea(int area, char dircetion) {
 		}
 	}
 
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			// if(temp[i][j]==0){printf("\t.");}
-			// else{printf("\t%c",temp[i][j]);}
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < 3; j++)
 			board[iFirst + i][jFirst + j] = temp[i][j];
-		}
-	}
-
-
+    
+    return;
 }

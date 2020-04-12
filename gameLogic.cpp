@@ -1,15 +1,16 @@
 #include "constants.h"
 
+// ** this function checks if the user turn wins or not. returns 1 if won
 int checkWinner(char board[][BOARD_SIZE], char action, int row, int col, char turn) {
 	// action::
 	// v = top down check
 	// V = bottom up check
 	// h = left right check
 	// H = right left check
-	// 1 = first diaginal check  \
-	// 2 = second diagonal check /
-	// 3 = third diagonal check /
-	// 4 = forth diagonal check \ 
+	// 1 = first diaginal check
+	// 2 = second diagonal check
+	// 3 = third diagonal check
+	// 4 = forth diagonal check
 	int i;
 	for (i = 0; i < 4; i++) {
 		switch (action) {
@@ -84,7 +85,14 @@ int checkWinner(char board[][BOARD_SIZE], char action, int row, int col, char tu
 	}
 }
 
-char checkGame(char board [][6]) {
+// ** this function check all the winning possibilities for both members
+// ** returns
+// * B if both won
+// * N if no one won
+// * b if black player won
+// * w if white player won
+// * F if board was full
+char checkGame(char board [][BOARD_SIZE]) {
 
 	int bWin = FALSE;
 	int wWin = FALSE;

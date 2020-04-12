@@ -1,5 +1,9 @@
+#ifndef BOARD_SIZE
+#include "constants.h"
+#endif
 
-void showBoard() {
+// ** this function shows the board in the console
+void showBoard(char board[][BOARD_SIZE]) {
 	system("cls");
 	printf("  \t1\t2\t3\t \t4\t5\t6 \n");
 	printf("  ______________________________________________________________ \n |\t \t \t \t|\t \t \t \t|\n");

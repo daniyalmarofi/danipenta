@@ -50,29 +50,28 @@ int main() {
 
     // game result
 	drawBoard(board);
-	if (gameResult == 'F') {
-		printf("NO ONE WON!");
-		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
+	settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
 		setcolor(LIGHTCYAN);
+	if (gameResult == 'F') {
+		// printf("NO ONE WON!");
 		outtextxy(520, 220, " NO ONE WON!  ");
+        // clear previous errors
 		outtextxy(520, 280, "                              ");
 		outtextxy(520, 300, "                              ");
 		outtextxy(520, 320, "                              ");
 	}
 	else if (gameResult == 'B') {
-		printf("BOTH PLAYERS WON!");
-		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
-		setcolor(LIGHTCYAN);
+		// printf("BOTH PLAYERS WON!");
 		outtextxy(520, 220, "BOTH PLAYERS WON!");
+        // clear previous errors
 		outtextxy(520, 280, "                              ");
 		outtextxy(520, 300, "                              ");
 		outtextxy(520, 320, "                              ");
 	}
 	else {
-		settextstyle(COMPLEX_FONT, HORIZ_DIR, 6);
-		setcolor(LIGHTCYAN);
 		outtextxy(520, 220, (gameResult=='w' ? "THE WHITE      " : "THE BLACK      "));
 		outtextxy(520, 270, "PLAYER WON!     ");
+        // clear previous errors
 		outtextxy(520, 320, "                    ");
 	}
 

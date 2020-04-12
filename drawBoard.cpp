@@ -1,6 +1,8 @@
 #include "graphics.h"
 #include "getUserTurn.h"
+#include "constants.h"
 
+// ** This functions returns the coordinates of (i,j) point for the graphic window
 int getCoordinate(int i, int j, char component) {
 	if (component == 'i')
 		return 90 + 70 * i;
@@ -9,7 +11,8 @@ int getCoordinate(int i, int j, char component) {
 	return -1;
 }
 
-void drawBoard(char board[][6]) {
+// ** this function draws the board
+void drawBoard(char board[][BOARD_SIZE]) {
 
 	int i, j;
 	//int wid = ALL_WINDOWS;
@@ -31,23 +34,23 @@ void drawBoard(char board[][6]) {
 
 	//show row number
 	settextstyle(SIMPLEX_FONT, HORIZ_DIR, 1);
-	for (i = 0; i < 6; i++) {
+	for (i = 0; i < BOARD_SIZE; i++) {
 		char number[2];
 		sprintf(number, "%d", i + 1);
 		outtextxy(80 + 70 * i, 30, number);
 	}
 
 	//show column number
-	for (i = 0; i < 6; i++) {
+	for (i = 0; i < BOARD_SIZE; i++) {
 		char number[2];
 		sprintf(number, "%d", i + 1);
 		outtextxy(30, 80 + 70 * i, number);
 	}
 
-	//show initial board
+	//show the board
 	int fillColor;
-	for (i = 0; i < 6; i++) {
-		for (j = 0; j < 6; j++) {
+	for (i = 0; i < BOARD_SIZE; i++) {
+		for (j = 0; j < BOARD_SIZE; j++) {
 			circle(getCoordinate(i, j, 'i'), getCoordinate(i, j, 'j'), 30);
 			if (board[j][i] == 'w')
 				fillColor = WHITE;
@@ -57,8 +60,6 @@ void drawBoard(char board[][6]) {
 				fillColor = RED;
 			setfillstyle(SOLID_FILL, fillColor);
 			floodfill(getCoordinate(i, j, 'i'), getCoordinate(i, j, 'j'), YELLOW);
-
-			//delay(100);
 		}
 	}
 

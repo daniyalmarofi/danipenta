@@ -1,30 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TRUE 1
-#define FALSE 0
-#define BOARD_SIZE 6
 
+#include "constants.h"
 #include "showBoard.h"
 #include "getInput.h"
 #include "gameLogic.h"
-char board[BOARD_SIZE][BOARD_SIZE] = { 0 };
 
 #include "showBoard.c"
-#include "gameLogic.c"
 #include "getInput.c"
+#include "gameLogic.cpp"
 
 int main() {
+
+    char board[BOARD_SIZE][BOARD_SIZE] = { 0 };
 	char gameResult;
 
 	while (TRUE) {
-		showBoard();
-		gameResult = checkGame();
+		showBoard(board);
+		gameResult = checkGame(board);
 		if (gameResult != 'N') break;
-		getUserInput('b');
-		showBoard();
-		gameResult = checkGame();
+		getUserInput(board,'b');
+		showBoard(board);
+		gameResult = checkGame(board);
 		if (gameResult != 'N') break;
-		getUserInput('w');
+		getUserInput(board,'w');
 	}
 
 	if (gameResult == 'F') {

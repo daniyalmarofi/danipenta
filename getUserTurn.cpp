@@ -38,7 +38,7 @@ void movePointer(int i,int j, char operation) {
 
 // ** This function check if user selected the correct point or not returns 1 if OK
 int checkInput(int i, int j) {
-	if (i < 0 || i >= BOARD_SIZE || j<0 || j >= BOARD_SIZE)
+	if (i < 0 || i >= BOARD_SIZE || j < 0 || j >= BOARD_SIZE)
 		return FALSE;
 	return TRUE;
 }
@@ -177,7 +177,7 @@ char getDirection(int area) {
 	return direction;
 }
 
-// ** this function gets the area to rotate from user
+// ** this function gets the area to rotate from user and returns the selected area
 int getArea() {
 	// printf("\ngetarea");
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
@@ -222,7 +222,7 @@ int getArea() {
 }
 
 // ** this function shows the pointer and asks users to select a point
-void getUserTurn(char board[][6], char turn) {
+void getUserTurn(char board[][BOARD_SIZE], char turn) {
 	settextstyle(COMPLEX_FONT, HORIZ_DIR, 3);
 	setcolor(LIGHTBLUE);
 	outtextxy(520, 220, (turn == 'b' ? "BLACK player's turn:              " : "WHITE player's turn:              "));
