@@ -30,6 +30,7 @@ void drawBoard(char board[][6]) {
 	line(265, 50, 265, 480);
 
 	//show row number
+	settextstyle(SIMPLEX_FONT, HORIZ_DIR, 1);
 	for (i = 0; i < 6; i++) {
 		char number[2];
 		sprintf(number, "%d", i + 1);
