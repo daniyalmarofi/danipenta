@@ -10,11 +10,9 @@
 int main() {
 	char board[BOARD_SIZE][BOARD_SIZE] = { 0 };
 
-	//char board[6][6] = { {'w','w',0,'b','w','b'} ,{0,0,0,'b','w','b'}, {'b','b','w','b','w','b'} };
-
-	initwindow(1000, 530, "Pentagol!");
+    // initialize the window
+	initwindow(1000, 530, "PENTAGOL!");
 	int wid = getcurrentwindow();
-
 
 	settextstyle(EUROPEAN_FONT, HORIZ_DIR, 5);
 	outtextxy(520, 50, "PENTAGOL!");
@@ -27,6 +25,7 @@ int main() {
 	outtextxy(565, 180, "rotation");
 
 
+    // game proccess
 	char gameResult;
 	int area=0;
 
@@ -48,6 +47,8 @@ int main() {
 		drawBoard(board);
 	}
 
+
+    // game result
 	drawBoard(board);
 	if (gameResult == 'F') {
 		printf("NO ONE WON!");
@@ -75,14 +76,10 @@ int main() {
 		outtextxy(520, 320, "                    ");
 	}
 
-
-	
-	
-
-
 	while (!kbhit())
 	{
 		delay(400);
 	}
+
 	return 0;
 }
